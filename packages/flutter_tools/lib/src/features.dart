@@ -47,8 +47,8 @@ abstract class FeatureFlags {
   /// Whether fast single widget reloads are enabled.
   bool get isSingleWidgetReloadEnabled => false;
 
-  /// Whether the windows UWP embedding is enabled.
-  bool get isWindowsUwpEnabled => false;
+  /// Whether WebAssembly compilation for Flutter Web is enabled.
+  bool get isFlutterWebWasmEnabled => false;
 
   /// Whether a particular feature is enabled for the current channel.
   ///
@@ -62,38 +62,32 @@ const List<Feature> allFeatures = <Feature>[
   flutterLinuxDesktopFeature,
   flutterMacOSDesktopFeature,
   flutterWindowsDesktopFeature,
-  windowsUwpEmbedding,
   singleWidgetReload,
   flutterAndroidFeature,
   flutterIOSFeature,
   flutterFuchsiaFeature,
   flutterCustomDevicesFeature,
+  flutterWebWasm,
 ];
 
+/// All current Flutter feature flags that can be configured.
+///
+/// [Feature.configSetting] is not `null`.
+Iterable<Feature> get allConfigurableFeatures => allFeatures.where((Feature feature) => feature.configSetting != null);
+
 /// The [Feature] for flutter web.
-const Feature flutterWebFeature = Feature(
+const Feature flutterWebFeature = Feature.fullyEnabled(
   name: 'Flutter for web',
   configSetting: 'enable-web',
   environmentOverride: 'FLUTTER_WEB',
-  master: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
-  beta: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
-  stable: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
 );
 
 /// The [Feature] for macOS desktop.
-const Feature flutterMacOSDesktopFeature = Feature(
+const Feature flutterMacOSDesktopFeature = Feature.fullyEnabled(
   name: 'support for desktop on macOS',
   configSetting: 'enable-macos-desktop',
   environmentOverride: 'FLUTTER_MACOS',
+<<<<<<< HEAD
   extraHelpText: 'Newer beta versions are available on the beta channel.',
   master: FeatureChannelSetting(
     available: true,
@@ -107,13 +101,16 @@ const Feature flutterMacOSDesktopFeature = Feature(
     available: true,
     enabledByDefault: true,
   ),
+=======
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 );
 
 /// The [Feature] for Linux desktop.
-const Feature flutterLinuxDesktopFeature = Feature(
+const Feature flutterLinuxDesktopFeature = Feature.fullyEnabled(
   name: 'support for desktop on Linux',
   configSetting: 'enable-linux-desktop',
   environmentOverride: 'FLUTTER_LINUX',
+<<<<<<< HEAD
   extraHelpText: 'Newer beta versions are available on the beta channel.',
   master: FeatureChannelSetting(
     available: true,
@@ -127,62 +124,27 @@ const Feature flutterLinuxDesktopFeature = Feature(
     available: true,
     enabledByDefault: true,
   ),
+=======
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 );
 
 /// The [Feature] for Windows desktop.
-const Feature flutterWindowsDesktopFeature = Feature(
+const Feature flutterWindowsDesktopFeature = Feature.fullyEnabled(
   name: 'support for desktop on Windows',
   configSetting: 'enable-windows-desktop',
   environmentOverride: 'FLUTTER_WINDOWS',
-  master: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
-  beta: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
-  stable: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
 );
 
 /// The [Feature] for Android devices.
-const Feature flutterAndroidFeature = Feature(
+const Feature flutterAndroidFeature = Feature.fullyEnabled(
   name: 'Flutter for Android',
   configSetting: 'enable-android',
-  master: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
-  beta: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
-  stable: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
 );
 
-
 /// The [Feature] for iOS devices.
-const Feature flutterIOSFeature = Feature(
+const Feature flutterIOSFeature = Feature.fullyEnabled(
   name: 'Flutter for iOS',
   configSetting: 'enable-ios',
-  master: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
-  beta: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
-  stable: FeatureChannelSetting(
-    available: true,
-    enabledByDefault: true,
-  ),
 );
 
 /// The [Feature] for Fuchsia support.
@@ -202,6 +164,12 @@ const Feature flutterCustomDevicesFeature = Feature(
   master: FeatureChannelSetting(
     available: true,
   ),
+  beta: FeatureChannelSetting(
+    available: true,
+  ),
+  stable: FeatureChannelSetting(
+    available: true,
+  ),
 );
 
 /// The fast hot reload feature for https://github.com/flutter/flutter/issues/61407.
@@ -218,13 +186,13 @@ const Feature singleWidgetReload = Feature(
   ),
 );
 
-/// The feature for enabling the Windows UWP embedding.
-const Feature windowsUwpEmbedding = Feature(
-  name: 'Flutter for Windows UWP',
-  configSetting: 'enable-windows-uwp-desktop',
-  extraHelpText: 'Warning: Windows UWP support is obsolete and will be removed.',
+/// Enabling WebAssembly compilation from `flutter build web`
+const Feature flutterWebWasm = Feature(
+  name: 'WebAssembly compilation from flutter build web',
+  environmentOverride: 'FLUTTER_WEB_WASM',
   master: FeatureChannelSetting(
     available: true,
+    enabledByDefault: true,
   ),
 );
 
@@ -247,6 +215,25 @@ class Feature {
     this.beta = const FeatureChannelSetting(),
     this.stable = const FeatureChannelSetting()
   });
+
+  /// Creates a [Feature] that is fully enabled across channels.
+  const Feature.fullyEnabled(
+      {required this.name,
+      this.environmentOverride,
+      this.configSetting,
+      this.extraHelpText})
+      : master = const FeatureChannelSetting(
+          available: true,
+          enabledByDefault: true,
+        ),
+        beta = const FeatureChannelSetting(
+          available: true,
+          enabledByDefault: true,
+        ),
+        stable = const FeatureChannelSetting(
+          available: true,
+          enabledByDefault: true,
+        );
 
   /// The user visible name for this feature.
   final String name;

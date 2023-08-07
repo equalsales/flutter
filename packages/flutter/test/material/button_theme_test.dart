@@ -2,9 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -40,6 +38,7 @@ void main() {
     expect(theme.alignedDropdown, true);
   });
 
+<<<<<<< HEAD
   testWidgets('ButtonTheme defaults', (WidgetTester tester) async {
     late ButtonTextTheme textTheme;
     late ButtonBarLayoutBehavior layoutBehavior;
@@ -91,6 +90,8 @@ void main() {
     expect(tester.getSize(find.byType(Material)), const Size(88.0, 36.0));
   });
 
+=======
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
   test('ButtonThemeData.copyWith', () {
     ButtonThemeData theme = const ButtonThemeData().copyWith();
     expect(theme.textTheme, ButtonTextTheme.normal);
@@ -127,6 +128,7 @@ void main() {
     expect(theme.colorScheme, const ColorScheme.dark());
   });
 
+<<<<<<< HEAD
   testWidgets('Theme buttonTheme defaults', (WidgetTester tester) async {
     final ThemeData lightTheme = ThemeData.light();
     late ButtonTextTheme textTheme;
@@ -240,6 +242,8 @@ void main() {
     expect(tester.getSize(find.byType(Material)), const Size(100.0, 200.0));
   });
 
+=======
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
   testWidgets('ButtonTheme alignedDropdown', (WidgetTester tester) async {
     final Key dropdownKey = UniqueKey();
 
@@ -346,6 +350,7 @@ void main() {
     expect(fooText, findsNWidgets(2));
     expect(tester.getRect(fooText.at(0)), tester.getRect(fooText.at(1)));
   });
+<<<<<<< HEAD
 
   testWidgets(
     'button theme with stateful color changes color in states',
@@ -428,4 +433,6 @@ void main() {
       expect(textColor(), pressedColor);
     },
   );
+=======
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 }

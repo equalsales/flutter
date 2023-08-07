@@ -13,4 +13,22 @@ void main() {
     SchedulerBinding.instance.scheduleForcedFrame();
     expect(SchedulerBinding.instance.platformDispatcher.onBeginFrame, isNotNull);
   });
+<<<<<<< HEAD
+=======
+
+  test('debugAssertNoTimeDilation does not throw if time dilate already reset', () async {
+    timeDilation = 2.0;
+    timeDilation = 1.0;
+    SchedulerBinding.instance.debugAssertNoTimeDilation('reason'); // no error
+  });
+
+  test('debugAssertNoTimeDilation throw if time dilate not reset', () async {
+    timeDilation = 3.0;
+    expect(
+      () => SchedulerBinding.instance.debugAssertNoTimeDilation('reason'),
+      throwsA(isA<FlutterError>().having((FlutterError e) => e.message, 'message', 'reason')),
+    );
+    timeDilation = 1.0;
+  });
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 }

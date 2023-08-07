@@ -41,6 +41,7 @@ void main() {
     expect(material.borderOnForeground, true);
     expect(material.borderRadius, null);
     expect(material.clipBehavior, Clip.none);
+<<<<<<< HEAD
     expect(material.color,
         material3 ? colorScheme.onPrimary : colorScheme.primary);
     expect(material.elevation, material3 ? 1 : 2);
@@ -53,6 +54,15 @@ void main() {
                 borderRadius: BorderRadius.all(Radius.circular(4))));
     expect(material.textStyle!.color,
         material3 ? colorScheme.primary : colorScheme.onPrimary);
+=======
+    expect(material.color, material3 ? colorScheme.onPrimary : colorScheme.primary);
+    expect(material.elevation, material3 ? 1: 2);
+    expect(material.shadowColor, const Color(0xff000000));
+    expect(material.shape, material3
+      ? const StadiumBorder()
+      : const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))));
+    expect(material.textStyle!.color, material3 ? colorScheme.primary : colorScheme.onPrimary);
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     expect(material.textStyle!.fontFamily, 'Roboto');
     expect(material.textStyle!.fontSize, 14);
     expect(material.textStyle!.fontWeight, FontWeight.w500);
@@ -70,11 +80,16 @@ void main() {
     // Material 3 uses the InkSparkle which uses a shader, so we can't capture
     // the effect with paint methods.
     if (!material3) {
+<<<<<<< HEAD
       final RenderObject inkFeatures = tester.allRenderObjects.firstWhere(
           (RenderObject object) =>
               object.runtimeType.toString() == '_RenderInkFeatures');
       expect(inkFeatures,
           paints..circle(color: colorScheme.onPrimary.withOpacity(0.24)));
+=======
+      final RenderObject inkFeatures = tester.allRenderObjects.firstWhere((RenderObject object) => object.runtimeType.toString() == '_RenderInkFeatures');
+      expect(inkFeatures, paints..circle(color: colorScheme.onPrimary.withOpacity(0.24)));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     }
 
     // Only elevation changes when enabled and pressed.
@@ -83,6 +98,7 @@ void main() {
     expect(material.borderOnForeground, true);
     expect(material.borderRadius, null);
     expect(material.clipBehavior, Clip.none);
+<<<<<<< HEAD
     expect(material.color,
         material3 ? colorScheme.onPrimary : colorScheme.primary);
     expect(material.elevation, material3 ? 1 : 8);
@@ -95,6 +111,15 @@ void main() {
                 borderRadius: BorderRadius.all(Radius.circular(4))));
     expect(material.textStyle!.color,
         material3 ? colorScheme.primary : colorScheme.onPrimary);
+=======
+    expect(material.color, material3 ? colorScheme.onPrimary : colorScheme.primary);
+    expect(material.elevation, material3 ? 1 : 8);
+    expect(material.shadowColor, const Color(0xff000000));
+    expect(material.shape, material3
+      ? const StadiumBorder()
+      : const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))));
+    expect(material.textStyle!.color, material3 ? colorScheme.primary : colorScheme.onPrimary);
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     expect(material.textStyle!.fontFamily, 'Roboto');
     expect(material.textStyle!.fontSize, 14);
     expect(material.textStyle!.fontWeight, FontWeight.w500);
@@ -129,6 +154,7 @@ void main() {
     expect(material.borderOnForeground, true);
     expect(material.borderRadius, null);
     expect(material.clipBehavior, Clip.none);
+<<<<<<< HEAD
     expect(material.color,
         material3 ? colorScheme.onPrimary : colorScheme.primary);
     expect(material.elevation, material3 ? 1 : 2);
@@ -141,6 +167,15 @@ void main() {
                 borderRadius: BorderRadius.all(Radius.circular(4))));
     expect(material.textStyle!.color,
         material3 ? colorScheme.primary : colorScheme.onPrimary);
+=======
+    expect(material.color, material3 ? colorScheme.onPrimary : colorScheme.primary);
+    expect(material.elevation, material3? 1 : 2);
+    expect(material.shadowColor, const Color(0xff000000));
+    expect(material.shape, material3
+      ? const StadiumBorder()
+      : const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))));
+    expect(material.textStyle!.color, material3 ? colorScheme.primary : colorScheme.onPrimary);
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     expect(material.textStyle!.fontFamily, 'Roboto');
     expect(material.textStyle!.fontSize, 14);
     expect(material.textStyle!.fontWeight, FontWeight.w500);
@@ -170,12 +205,18 @@ void main() {
     expect(material.color, colorScheme.onSurface.withOpacity(0.12));
     expect(material.elevation, 0.0);
     expect(material.shadowColor, const Color(0xff000000));
+<<<<<<< HEAD
     expect(
         material.shape,
         material3
             ? const StadiumBorder()
             : const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(4))));
+=======
+    expect(material.shape, material3
+      ? const StadiumBorder()
+      : const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     expect(material.textStyle!.color, colorScheme.onSurface.withOpacity(0.38));
     expect(material.textStyle!.fontFamily, 'Roboto');
     expect(material.textStyle!.fontSize, 14);
@@ -211,6 +252,7 @@ void main() {
       await tester.pumpAndSettle();
       await expectLater(tester, meetsGuideline(textContrastGuideline));
 
+<<<<<<< HEAD
       // Hovered.
       final Offset center = tester.getCenter(find.byType(ElevatedButton));
       final TestGesture gesture = await tester.createGesture(
@@ -222,6 +264,18 @@ void main() {
       await tester.pumpAndSettle();
       await expectLater(tester, meetsGuideline(textContrastGuideline));
     },
+=======
+    // Hovered.
+    final Offset center = tester.getCenter(find.byType(ElevatedButton));
+    final TestGesture gesture = await tester.createGesture(
+      kind: PointerDeviceKind.mouse,
+    );
+    await gesture.addPointer();
+    await gesture.moveTo(center);
+    await tester.pumpAndSettle();
+    await expectLater(tester, meetsGuideline(textContrastGuideline));
+  },
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     skip: isBrowser, // https://github.com/flutter/flutter/issues/44115
   );
 
@@ -296,7 +350,6 @@ void main() {
       kind: PointerDeviceKind.mouse,
     );
     await gesture.addPointer();
-    addTearDown(gesture.removePointer);
     await gesture.moveTo(center);
     await tester.pumpAndSettle();
     expect(textColor(), hoverColor);
@@ -377,7 +430,6 @@ void main() {
       kind: PointerDeviceKind.mouse,
     );
     await gesture.addPointer();
-    addTearDown(gesture.removePointer);
     await gesture.moveTo(center);
     await tester.pumpAndSettle();
     expect(iconColor(), hoverColor);
@@ -504,7 +556,6 @@ void main() {
     final TestGesture gesture =
         await tester.createGesture(kind: PointerDeviceKind.mouse);
     await gesture.addPointer();
-    addTearDown(gesture.removePointer);
     await gesture.moveTo(tester.getCenter(find.byKey(childKey)));
     await tester.pumpAndSettle();
     expect(hovering, isTrue);
@@ -560,7 +611,6 @@ void main() {
     final TestGesture gesture =
         await tester.createGesture(kind: PointerDeviceKind.mouse);
     await gesture.addPointer();
-    addTearDown(gesture.removePointer);
 
     await gesture.moveTo(tester.getCenter(find.byType(ElevatedButton)));
     await tester.pumpAndSettle();
@@ -681,8 +731,6 @@ void main() {
         (RenderObject object) =>
             object.runtimeType.toString() == '_RenderInkFeatures');
     expect(inkFeatures, paints..rect(color: hoverColor));
-
-    await gesture.removePointer();
   });
 
   testWidgets('Does ElevatedButton work with focus',
@@ -761,11 +809,11 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: ElevatedButton(
-            style: ButtonStyle(
+            style: const ButtonStyle(
               // Specifying minimumSize to mimic the original minimumSize for
               // ElevatedButton so that the semantics tree's rect and transform
               // match the original version of this test.
-              minimumSize: MaterialStateProperty.all<Size>(const Size(88, 36)),
+              minimumSize: MaterialStatePropertyAll<Size>(Size(88, 36)),
             ),
             onPressed: () {},
             child: const Text('ABC'),
@@ -801,14 +849,19 @@ void main() {
     semantics.dispose();
   });
 
+<<<<<<< HEAD
   testWidgets(
       'ElevatedButton size is configurable by ThemeData.materialTapTargetSize',
       (WidgetTester tester) async {
     final ButtonStyle style = ButtonStyle(
+=======
+  testWidgets('ElevatedButton size is configurable by ThemeData.materialTapTargetSize', (WidgetTester tester) async {
+    const ButtonStyle style = ButtonStyle(
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
       // Specifying minimumSize to mimic the original minimumSize for
       // ElevatedButton so that the corresponding button size matches
       // the original version of this test.
-      minimumSize: MaterialStateProperty.all<Size>(const Size(88, 36)),
+      minimumSize: MaterialStatePropertyAll<Size>(Size(88, 36)),
     );
 
     Widget buildFrame(MaterialTapTargetSize tapTargetSize, Key key) {
@@ -876,8 +929,12 @@ void main() {
                   // Specifying minimumSize to mimic the original minimumSize for
                   // ElevatedButton so that the corresponding button size matches
                   // the original version of this test.
+<<<<<<< HEAD
                   minimumSize:
                       MaterialStateProperty.all<Size>(const Size(88, 36)),
+=======
+                  minimumSize: const MaterialStatePropertyAll<Size>(Size(88, 36)),
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
                 ),
                 key: key,
                 onPressed: () {},
@@ -948,9 +1005,14 @@ void main() {
         child: Center(
           child: ElevatedButton.icon(
             key: buttonKey,
+<<<<<<< HEAD
             style: ButtonStyle(
               padding: MaterialStateProperty.all<EdgeInsets>(
                   const EdgeInsets.fromLTRB(16, 5, 10, 12)),
+=======
+            style: const ButtonStyle(
+              padding: MaterialStatePropertyAll<EdgeInsets>(EdgeInsets.fromLTRB(16, 5, 10, 12)),
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
             ),
             onPressed: () {},
             icon: const Icon(Icons.add),
@@ -1088,8 +1150,12 @@ void main() {
                   // default values as the test was designed against these settings.
                   textTheme: Typography.englishLike2014,
                   elevatedButtonTheme: ElevatedButtonThemeData(
+<<<<<<< HEAD
                     style: ElevatedButton.styleFrom(
                         minimumSize: const Size(64, 36)),
+=======
+                    style: ElevatedButton.styleFrom(minimumSize: const Size(64, 36)),
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
                   ),
                 ),
                 home: Builder(
@@ -1269,8 +1335,65 @@ void main() {
     expect(paddingWidget.padding, const EdgeInsets.all(22));
   });
 
+<<<<<<< HEAD
   testWidgets('Elevated buttons animate elevation before color on disable',
       (WidgetTester tester) async {
+=======
+  testWidgets('M3 ElevatedButton has correct padding', (WidgetTester tester) async {
+    final Key key = UniqueKey();
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: ThemeData.from(colorScheme: const ColorScheme.light(), useMaterial3: true),
+        home: Scaffold(
+                body: Center(
+                  child: ElevatedButton(
+                    key: key,
+                    onPressed: () {},
+                    child: const Text('ElevatedButton'),
+                  ),
+                ),
+              ),
+            ),
+          );
+
+    final Padding paddingWidget = tester.widget<Padding>(
+      find.descendant(
+        of: find.byKey(key),
+        matching: find.byType(Padding),
+      ),
+    );
+    expect(paddingWidget.padding, const EdgeInsets.symmetric(horizontal: 24));
+  });
+
+  testWidgets('M3 ElevatedButton.icon has correct padding', (WidgetTester tester) async {
+    final Key key = UniqueKey();
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: ThemeData.from(colorScheme: const ColorScheme.light(), useMaterial3: true),
+        home: Scaffold(
+                body: Center(
+                  child: ElevatedButton.icon(
+                    key: key,
+                    icon: const Icon(Icons.favorite),
+                    onPressed: () {},
+                    label: const Text('ElevatedButton'),
+                  ),
+                ),
+              ),
+            ),
+          );
+
+    final Padding paddingWidget = tester.widget<Padding>(
+      find.descendant(
+        of: find.byKey(key),
+        matching: find.byType(Padding),
+      ),
+    );
+   expect(paddingWidget.padding, const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 24.0, 0.0));
+  });
+
+  testWidgets('Elevated buttons animate elevation before color on disable', (WidgetTester tester) async {
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     // This is a regression test for https://github.com/flutter/flutter/issues/387
 
     const ColorScheme colorScheme = ColorScheme.light();
@@ -1326,10 +1449,14 @@ void main() {
     const Color borderColor = Color(0xff4caf50);
     await tester.pumpWidget(
       MaterialApp(
+<<<<<<< HEAD
         theme: ThemeData(
             colorScheme: const ColorScheme.light(),
             textTheme: Typography.englishLike2014,
             useMaterial3: false),
+=======
+        theme: ThemeData(colorScheme: const ColorScheme.light(), textTheme: Typography.englishLike2014, useMaterial3: false),
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
         home: Center(
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -1346,6 +1473,7 @@ void main() {
       ),
     );
 
+<<<<<<< HEAD
     expect(
         find.byType(ElevatedButton),
         paints
@@ -1356,6 +1484,14 @@ void main() {
               inner: RRect.fromLTRBR(
                   10.0, 10.0, 106.0, 26.0, const Radius.circular(16 - 10)),
               color: borderColor));
+=======
+    expect(find.byType(ElevatedButton), paints ..drrect(
+      // Outer and inner rect that give the outline a width of 10.
+      outer: RRect.fromLTRBR(0.0, 0.0, 116.0, 36.0, const Radius.circular(16)),
+      inner: RRect.fromLTRBR(10.0, 10.0, 106.0, 26.0, const Radius.circular(16 - 10)),
+      color: borderColor)
+    );
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
   });
 
   testWidgets('Fixed size ElevatedButtons', (WidgetTester tester) async {
@@ -1418,10 +1554,15 @@ void main() {
     // NoSplash.splashFactory, no splash circles drawn
     await tester.pumpWidget(buildFrame(splashFactory: NoSplash.splashFactory));
     {
+<<<<<<< HEAD
       final TestGesture gesture =
           await tester.startGesture(tester.getCenter(find.text('test')));
       final MaterialInkController material =
           Material.of(tester.element(find.text('test')))!;
+=======
+      final TestGesture gesture = await tester.startGesture(tester.getCenter(find.text('test')));
+      final MaterialInkController material = Material.of(tester.element(find.text('test')));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
       await tester.pump(const Duration(milliseconds: 200));
       expect(material, paintsExactlyCountTimes(#drawCircle, 0));
       await gesture.up();
@@ -1431,10 +1572,15 @@ void main() {
     // InkRipple.splashFactory, one splash circle drawn.
     await tester.pumpWidget(buildFrame(splashFactory: InkRipple.splashFactory));
     {
+<<<<<<< HEAD
       final TestGesture gesture =
           await tester.startGesture(tester.getCenter(find.text('test')));
       final MaterialInkController material =
           Material.of(tester.element(find.text('test')))!;
+=======
+      final TestGesture gesture = await tester.startGesture(tester.getCenter(find.text('test')));
+      final MaterialInkController material = Material.of(tester.element(find.text('test')));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
       await tester.pump(const Duration(milliseconds: 200));
       expect(material, paintsExactlyCountTimes(#drawCircle, 1));
       await gesture.up();
@@ -1657,7 +1803,6 @@ void main() {
     final TestGesture gesture =
         await tester.createGesture(kind: PointerDeviceKind.mouse, pointer: 1);
     await gesture.addPointer(location: Offset.zero);
-    addTearDown(gesture.removePointer);
 
     await tester.pump();
 
@@ -1719,6 +1864,212 @@ void main() {
     expect(RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
         SystemMouseCursors.basic);
   });
+
+  testWidgets('Ink Response shape matches Material shape', (WidgetTester tester) async {
+    // This is a regression test for https://github.com/flutter/flutter/issues/91844
+
+    Widget buildFrame({BorderSide? side}) {
+      return MaterialApp(
+       home: Scaffold(
+         body: Center(
+           child: ElevatedButton(
+             style: ElevatedButton.styleFrom(
+               side: side,
+               shape: const RoundedRectangleBorder(
+                 side: BorderSide(
+                   color: Color(0xff0000ff),
+                   width: 0,
+                  ),
+                ),
+             ),
+             onPressed: () { },
+             child: const Text('ElevatedButton'),
+           ),
+         ),
+       ),
+      );
+    }
+
+    const BorderSide borderSide = BorderSide(width: 10, color: Color(0xff00ff00));
+    await tester.pumpWidget(buildFrame(side: borderSide));
+    expect(
+      tester.widget<InkWell>(find.byType(InkWell)).customBorder,
+      const RoundedRectangleBorder(side: borderSide),
+    );
+
+    await tester.pumpWidget(buildFrame());
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<InkWell>(find.byType(InkWell)).customBorder,
+      const RoundedRectangleBorder(
+        side: BorderSide(
+          color: Color(0xff0000ff),
+          width: 0.0,
+        ),
+      ),
+    );
+  });
+
+  testWidgets('ElevatedButton.styleFrom can be used to set foreground and background colors', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.purple,
+            ),
+            onPressed: () {},
+            child: const Text('button'),
+          ),
+        ),
+      ),
+    );
+
+    final Material material = tester.widget<Material>(find.descendant(
+      of: find.byType(ElevatedButton),
+      matching: find.byType(Material),
+    ));
+    expect(material.color, Colors.purple);
+    expect(material.textStyle!.color, Colors.white);
+  });
+
+  Future<void> testStatesController(Widget? icon, WidgetTester tester) async {
+    int count = 0;
+    void valueChanged() {
+      count += 1;
+    }
+    final MaterialStatesController controller = MaterialStatesController();
+    controller.addListener(valueChanged);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+          child: icon == null
+            ? ElevatedButton(
+                statesController: controller,
+                onPressed: () { },
+                child: const Text('button'),
+              )
+            : ElevatedButton.icon(
+                statesController: controller,
+                onPressed: () { },
+                icon: icon,
+                label: const Text('button'),
+              ),
+        ),
+      ),
+    );
+
+    expect(controller.value, <MaterialState>{});
+    expect(count, 0);
+
+    final Offset center = tester.getCenter(find.byType(Text));
+    final TestGesture gesture = await tester.createGesture(
+      kind: PointerDeviceKind.mouse,
+    );
+    await gesture.addPointer();
+    await gesture.moveTo(center);
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{MaterialState.hovered});
+    expect(count, 1);
+
+    await gesture.moveTo(Offset.zero);
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{});
+    expect(count, 2);
+
+    await gesture.moveTo(center);
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{MaterialState.hovered});
+    expect(count, 3);
+
+    await gesture.down(center);
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{MaterialState.hovered, MaterialState.pressed});
+    expect(count, 4);
+
+    await gesture.up();
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{MaterialState.hovered});
+    expect(count, 5);
+
+    await gesture.moveTo(Offset.zero);
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{});
+    expect(count, 6);
+
+    await gesture.down(center);
+    await tester.pumpAndSettle();
+    expect(controller.value, <MaterialState>{MaterialState.hovered, MaterialState.pressed});
+    expect(count, 8); // adds hovered and pressed - two changes
+
+    // If the button is rebuilt disabled, then the pressed state is
+    // removed.
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+        child: icon == null
+          ? ElevatedButton(
+              statesController: controller,
+              onPressed: null,
+              child: const Text('button'),
+            )
+          : ElevatedButton.icon(
+              statesController: controller,
+              onPressed: null,
+              icon: icon,
+              label: const Text('button'),
+            ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(controller.value, <MaterialState>{MaterialState.hovered, MaterialState.disabled});
+    expect(count, 10); // removes pressed and adds disabled - two changes
+    await gesture.moveTo(Offset.zero);
+    await tester.pumpAndSettle();
+    expect(controller.value, <MaterialState>{MaterialState.disabled});
+    expect(count, 11);
+    await gesture.removePointer();
+  }
+
+  testWidgets('ElevatedButton statesController', (WidgetTester tester) async {
+    testStatesController(null, tester);
+  });
+
+  testWidgets('ElevatedButton.icon statesController', (WidgetTester tester) async {
+    testStatesController(const Icon(Icons.add), tester);
+  });
+
+  testWidgets('Disabled ElevatedButton statesController', (WidgetTester tester) async {
+    int count = 0;
+    void valueChanged() {
+      count += 1;
+    }
+    final MaterialStatesController controller = MaterialStatesController();
+    controller.addListener(valueChanged);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+          child: ElevatedButton(
+            statesController: controller,
+            onPressed: null,
+            child: const Text('button'),
+          ),
+        ),
+      ),
+    );
+    expect(controller.value, <MaterialState>{MaterialState.disabled});
+    expect(count, 1);
+  });
+
 }
 
 TextStyle _iconStyle(WidgetTester tester, IconData icon) {

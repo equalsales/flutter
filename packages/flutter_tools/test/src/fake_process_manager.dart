@@ -4,7 +4,7 @@
 
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io' as io show ProcessSignal, Process, ProcessStartMode, ProcessResult, systemEncoding;
+import 'dart:io' as io show Process, ProcessResult, ProcessSignal, ProcessStartMode, systemEncoding;
 
 import 'package:file/file.dart';
 import 'package:meta/meta.dart';
@@ -33,13 +33,11 @@ class FakeCommand {
     this.stdin,
     this.exception,
     this.outputFollowsExit = false,
-  }) : assert(command != null),
-       assert(duration != null),
-       assert(exitCode != null);
+  });
 
   /// The exact commands that must be matched for this [FakeCommand] to be
   /// considered correct.
-  final List<String> command;
+  final List<Pattern> command;
 
   /// The exact working directory that must be matched for this [FakeCommand] to
   /// be considered correct.
@@ -110,7 +108,8 @@ class FakeCommand {
     Map<String, String>? environment,
     Encoding? encoding,
   ) {
-    expect(command, equals(this.command));
+    final List<dynamic> matchers = this.command.map((Pattern x) => x is String ? x : matches(x)).toList();
+    expect(command, matchers);
     if (this.workingDirectory != null) {
       expect(this.workingDirectory, workingDirectory);
     }
@@ -123,25 +122,38 @@ class FakeCommand {
   }
 }
 
-class _FakeProcess implements io.Process {
-  _FakeProcess(
-    this._exitCode,
-    Duration duration,
-    this.pid,
-    this._stderr,
+/// A fake process for use with [FakeProcessManager].
+///
+/// The process delays exit until both [duration] (if specified) has elapsed
+/// and [completer] (if specified) has completed.
+///
+/// When [outputFollowsExit] is specified, bytes are streamed to [stderr] and
+/// [stdout] after the process exits.
+@visibleForTesting
+class FakeProcess implements io.Process {
+  FakeProcess({
+    int exitCode = 0,
+    Duration duration = Duration.zero,
+    this.pid = 1234,
+    List<int> stderr = const <int>[],
     IOSink? stdin,
-    this._stdout,
-    this._completer,
-    bool outputFollowsExit,
-  ) : exitCode = Future<void>.delayed(duration).then((void value) {
-        if (_completer != null) {
-          return _completer.future.then((void _) => _exitCode);
-        }
-        return _exitCode;
-      }),
-      stdin = stdin ?? IOSink(StreamController<List<int>>().sink)
+    List<int> stdout = const <int>[],
+    Completer<void>? completer,
+    bool outputFollowsExit = false,
+  }) : _exitCode = exitCode,
+       exitCode = Future<void>.delayed(duration).then((void value) {
+         if (completer != null) {
+           return completer.future.then((void _) => exitCode);
+         }
+         return exitCode;
+       }),
+      _stderr = stderr,
+      stdin = stdin ?? IOSink(StreamController<List<int>>().sink),
+      _stdout = stdout,
+      _completer = completer
   {
     if (_stderr.isEmpty) {
+<<<<<<< HEAD
       stderr = const Stream<List<int>>.empty();
     } else if (outputFollowsExit) {
       // Wait for the process to exit before emitting stderr.
@@ -161,10 +173,38 @@ class _FakeProcess implements io.Process {
       }));
     } else {
       stdout = Stream<List<int>>.value(_stdout);
+=======
+      this.stderr = const Stream<List<int>>.empty();
+    } else if (outputFollowsExit) {
+      // Wait for the process to exit before emitting stderr.
+      this.stderr = Stream<List<int>>.fromFuture(this.exitCode.then((_) {
+        // Return a Future so stderr isn't immediately available to those who
+        // await exitCode, but is available asynchronously later.
+        return Future<List<int>>(() => _stderr);
+      }));
+    } else {
+      this.stderr = Stream<List<int>>.value(_stderr);
+    }
+
+    if (_stdout.isEmpty) {
+      this.stdout = const Stream<List<int>>.empty();
+    } else if (outputFollowsExit) {
+      // Wait for the process to exit before emitting stdout.
+      this.stdout = Stream<List<int>>.fromFuture(this.exitCode.then((_) {
+        // Return a Future so stdout isn't immediately available to those who
+        // await exitCode, but is available asynchronously later.
+        return Future<List<int>>(() => _stdout);
+      }));
+    } else {
+      this.stdout = Stream<List<int>>.value(_stdout);
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     }
   }
 
+  /// The process exit code.
   final int _exitCode;
+
+  /// When specified, blocks process exit until completed.
   final Completer<void>? _completer;
 
   @override
@@ -173,6 +213,10 @@ class _FakeProcess implements io.Process {
   @override
   final int pid;
 
+<<<<<<< HEAD
+=======
+  /// The raw byte content of stderr.
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
   final List<int> _stderr;
 
   @override
@@ -184,6 +228,10 @@ class _FakeProcess implements io.Process {
   @override
   late final Stream<List<int>> stdout;
 
+<<<<<<< HEAD
+=======
+  /// The raw byte content of stdout.
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
   final List<int> _stdout;
 
   @override
@@ -231,7 +279,7 @@ abstract class FakeProcessManager implements ProcessManager {
     commands.forEach(addCommand);
   }
 
-  final Map<int, _FakeProcess> _fakeRunningProcesses = <int, _FakeProcess>{};
+  final Map<int, FakeProcess> _fakeRunningProcesses = <int, FakeProcess>{};
 
   /// Whether this fake has more [FakeCommand]s that are expected to run.
   ///
@@ -251,7 +299,7 @@ abstract class FakeProcessManager implements ProcessManager {
 
   int _pid = 9999;
 
-  _FakeProcess _runCommand(
+  FakeProcess _runCommand(
     List<String> command,
     String? workingDirectory,
     Map<String, String>? environment,
@@ -266,6 +314,7 @@ abstract class FakeProcessManager implements ProcessManager {
     if (fakeCommand.onRun != null) {
       fakeCommand.onRun!();
     }
+<<<<<<< HEAD
     return _FakeProcess(
       fakeCommand.exitCode,
       fakeCommand.duration,
@@ -275,6 +324,17 @@ abstract class FakeProcessManager implements ProcessManager {
       encoding?.encode(fakeCommand.stdout) ?? fakeCommand.stdout.codeUnits,
       fakeCommand.completer,
       fakeCommand.outputFollowsExit,
+=======
+    return FakeProcess(
+      duration: fakeCommand.duration,
+      exitCode: fakeCommand.exitCode,
+      pid: _pid,
+      stderr: encoding?.encode(fakeCommand.stderr) ?? fakeCommand.stderr.codeUnits,
+      stdin: fakeCommand.stdin,
+      stdout: encoding?.encode(fakeCommand.stdout) ?? fakeCommand.stdout.codeUnits,
+      completer: fakeCommand.completer,
+      outputFollowsExit: fakeCommand.outputFollowsExit,
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     );
   }
 
@@ -287,7 +347,7 @@ abstract class FakeProcessManager implements ProcessManager {
     bool runInShell = false, // ignored
     io.ProcessStartMode mode = io.ProcessStartMode.normal, // ignored
   }) {
-    final _FakeProcess process = _runCommand(command.cast<String>(), workingDirectory, environment, io.systemEncoding);
+    final FakeProcess process = _runCommand(command.cast<String>(), workingDirectory, environment, io.systemEncoding);
     if (process._completer != null) {
       _fakeRunningProcesses[process.pid] = process;
       process.exitCode.whenComplete(() {
@@ -307,7 +367,7 @@ abstract class FakeProcessManager implements ProcessManager {
     Encoding? stdoutEncoding = io.systemEncoding,
     Encoding? stderrEncoding = io.systemEncoding,
   }) async {
-    final _FakeProcess process = _runCommand(command.cast<String>(), workingDirectory, environment, stdoutEncoding);
+    final FakeProcess process = _runCommand(command.cast<String>(), workingDirectory, environment, stdoutEncoding);
     await process.exitCode;
     return io.ProcessResult(
       process.pid,
@@ -327,7 +387,7 @@ abstract class FakeProcessManager implements ProcessManager {
     Encoding? stdoutEncoding = io.systemEncoding,
     Encoding? stderrEncoding = io.systemEncoding,
   }) {
-    final _FakeProcess process = _runCommand(command.cast<String>(), workingDirectory, environment, stdoutEncoding);
+    final FakeProcess process = _runCommand(command.cast<String>(), workingDirectory, environment, stdoutEncoding);
     return io.ProcessResult(
       process.pid,
       process._exitCode,
@@ -345,7 +405,7 @@ abstract class FakeProcessManager implements ProcessManager {
   @override
   bool killPid(int pid, [io.ProcessSignal signal = io.ProcessSignal.sigterm]) {
     // Killing a fake process has no effect unless it has an attached completer.
-    final _FakeProcess? fakeProcess = _fakeRunningProcesses[pid];
+    final FakeProcess? fakeProcess = _fakeRunningProcesses[pid];
     if (fakeProcess == null) {
       return false;
     }

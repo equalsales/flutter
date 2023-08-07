@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+<<<<<<< HEAD
 const ShapeBorder defaultButtonShape = RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(2.0)));
 const EdgeInsets defaultButtonPadding =
@@ -140,6 +141,11 @@ void main() {
     });
   });
 
+=======
+const Duration defaultButtonDuration = Duration(milliseconds: 200);
+
+void main() {
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
   group('FloatingActionButton', () {
     const BoxConstraints defaultFABConstraints =
         BoxConstraints.tightFor(width: 56.0, height: 56.0);

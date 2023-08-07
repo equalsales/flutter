@@ -664,6 +664,7 @@ void main() {
     expect(getTextColor('selected'), isNot(selectedButtonColor));
     expect(getTextColor('unselected'), isNot(buttonColor));
   });
+<<<<<<< HEAD
 
   testWidgets('ButtonTheme.wrap()', (WidgetTester tester) async {
     const Color buttonColor = Color(0xFF00FF00);
@@ -759,4 +760,6 @@ void main() {
     expect(getButtonColor('disabled'), isNot(disabledButtonColor));
     expect(getButtonColor('enabled'), isNot(buttonColor));
   });
+=======
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 }

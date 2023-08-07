@@ -44,12 +44,18 @@ void main() {
     expect(material.color, Colors.transparent);
     expect(material.elevation, 0.0);
     expect(material.shadowColor, material3 ? null : const Color(0xff000000));
+<<<<<<< HEAD
     expect(
         material.shape,
         material3
             ? const StadiumBorder()
             : const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(4))));
+=======
+    expect(material.shape, material3
+      ? const StadiumBorder()
+      : const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     expect(material.textStyle!.color, colorScheme.primary);
     expect(material.textStyle!.fontFamily, 'Roboto');
     expect(material.textStyle!.fontSize, 14);
@@ -68,11 +74,16 @@ void main() {
     // Material 3 uses the InkSparkle which uses a shader, so we can't capture
     // the effect with paint methods.
     if (!material3) {
+<<<<<<< HEAD
       final RenderObject inkFeatures = tester.allRenderObjects.firstWhere(
           (RenderObject object) =>
               object.runtimeType.toString() == '_RenderInkFeatures');
       expect(inkFeatures,
           paints..circle(color: colorScheme.primary.withOpacity(0.12)));
+=======
+      final RenderObject inkFeatures = tester.allRenderObjects.firstWhere((RenderObject object) => object.runtimeType.toString() == '_RenderInkFeatures');
+      expect(inkFeatures, paints..circle(color: colorScheme.primary.withOpacity(0.12)));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     }
 
     await gesture.up();
@@ -86,12 +97,18 @@ void main() {
     expect(material.color, Colors.transparent);
     expect(material.elevation, 0.0);
     expect(material.shadowColor, material3 ? null : const Color(0xff000000));
+<<<<<<< HEAD
     expect(
         material.shape,
         material3
             ? const StadiumBorder()
             : const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(4))));
+=======
+    expect(material.shape, material3
+      ? const StadiumBorder()
+      : const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     expect(material.textStyle!.color, colorScheme.primary);
     expect(material.textStyle!.fontFamily, 'Roboto');
     expect(material.textStyle!.fontSize, 14);
@@ -127,12 +144,18 @@ void main() {
     expect(material.color, Colors.transparent);
     expect(material.elevation, 0.0);
     expect(material.shadowColor, material3 ? null : const Color(0xff000000));
+<<<<<<< HEAD
     expect(
         material.shape,
         material3
             ? const StadiumBorder()
             : const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(4))));
+=======
+    expect(material.shape, material3
+      ? const StadiumBorder()
+      : const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     expect(material.textStyle!.color, colorScheme.primary);
     expect(material.textStyle!.fontFamily, 'Roboto');
     expect(material.textStyle!.fontSize, 14);
@@ -160,12 +183,18 @@ void main() {
     expect(material.color, Colors.transparent);
     expect(material.elevation, 0.0);
     expect(material.shadowColor, material3 ? null : const Color(0xff000000));
+<<<<<<< HEAD
     expect(
         material.shape,
         material3
             ? const StadiumBorder()
             : const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(4))));
+=======
+    expect(material.shape, material3
+      ? const StadiumBorder()
+      : const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     expect(material.textStyle!.color, colorScheme.onSurface.withOpacity(0.38));
     expect(material.textStyle!.fontFamily, 'Roboto');
     expect(material.textStyle!.fontSize, 14);
@@ -275,6 +304,7 @@ void main() {
       await tester.pumpAndSettle();
       await expectLater(tester, meetsGuideline(textContrastGuideline));
 
+<<<<<<< HEAD
       // Hovered.
       final Offset center = tester.getCenter(find.byType(TextButton));
       final TestGesture gesture = await tester.createGesture(
@@ -285,6 +315,17 @@ void main() {
       await gesture.moveTo(center);
       await tester.pumpAndSettle();
       await expectLater(tester, meetsGuideline(textContrastGuideline));
+=======
+    // Hovered.
+    final Offset center = tester.getCenter(find.byType(TextButton));
+    final TestGesture gesture = await tester.createGesture(
+      kind: PointerDeviceKind.mouse,
+    );
+    await gesture.addPointer();
+    await gesture.moveTo(center);
+    await tester.pumpAndSettle();
+    await expectLater(tester, meetsGuideline(textContrastGuideline));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 
       // Highlighted (pressed).
       await gesture.down(center);
@@ -360,7 +401,6 @@ void main() {
       kind: PointerDeviceKind.mouse,
     );
     await gesture.addPointer();
-    addTearDown(gesture.removePointer);
     await gesture.moveTo(center);
     await tester.pumpAndSettle();
     expect(textColor(), hoverColor);
@@ -433,7 +473,6 @@ void main() {
       kind: PointerDeviceKind.mouse,
     );
     await gesture.addPointer();
-    addTearDown(gesture.removePointer);
     await gesture.moveTo(center);
     await tester.pumpAndSettle();
     expect(iconColor(), hoverColor);
@@ -485,10 +524,13 @@ void main() {
       ),
     );
 
+<<<<<<< HEAD
     final TestGesture gesture =
         await tester.createGesture(kind: PointerDeviceKind.mouse);
+=======
+    final TestGesture gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     await gesture.addPointer();
-    addTearDown(gesture.removePointer);
     await gesture.moveTo(tester.getCenter(find.byType(TextButton)));
     await tester.pumpAndSettle();
 
@@ -540,11 +582,11 @@ void main() {
         textDirection: TextDirection.ltr,
         child: Center(
           child: TextButton(
-            style: ButtonStyle(
+            style: const ButtonStyle(
               // Specifying minimumSize to mimic the original minimumSize for
               // ElevatedButton so that the semantics tree's rect and transform
               // match the original version of this test.
-              minimumSize: MaterialStateProperty.all<Size>(const Size(88, 36)),
+              minimumSize: MaterialStatePropertyAll<Size>(Size(88, 36)),
             ),
             onPressed: () {},
             child: const Text('ABC'),
@@ -592,7 +634,11 @@ void main() {
             data: const MediaQueryData(),
             child: Center(
               child: TextButton(
+<<<<<<< HEAD
                 onPressed: () {},
+=======
+                onPressed: () { },
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
                 child: const Text('ABC'),
               ),
             ),
@@ -616,7 +662,11 @@ void main() {
             data: const MediaQueryData(textScaleFactor: 1.3),
             child: Center(
               child: TextButton(
+<<<<<<< HEAD
                 onPressed: () {},
+=======
+                onPressed: () { },
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
                 child: const Text('ABC'),
               ),
             ),
@@ -625,6 +675,7 @@ void main() {
       ),
     );
 
+<<<<<<< HEAD
     // Scaled text rendering is different on Linux and Mac by one pixel.
     // TODO(gspencergoog): Figure out why this is, and fix it. https://github.com/flutter/flutter/issues/12357
     expect(tester.getSize(find.byType(TextButton)).width,
@@ -634,6 +685,10 @@ void main() {
     expect(tester.getSize(find.byType(Text)).width, isIn(<double>[54.0, 55.0]));
     expect(
         tester.getSize(find.byType(Text)).height, isIn(<double>[18.0, 19.0]));
+=======
+    expect(tester.getSize(find.byType(TextButton)), const Size(71.0, 48.0));
+    expect(tester.getSize(find.byType(Text)), const Size(55.0, 18.0));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 
     // Set text scale large enough to expand text and button.
     await tester.pumpWidget(
@@ -646,7 +701,11 @@ void main() {
             data: const MediaQueryData(textScaleFactor: 3.0),
             child: Center(
               child: TextButton(
+<<<<<<< HEAD
                 onPressed: () {},
+=======
+                onPressed: () { },
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
                 child: const Text('ABC'),
               ),
             ),
@@ -655,6 +714,7 @@ void main() {
       ),
     );
 
+<<<<<<< HEAD
     // Scaled text rendering is different on Linux and Mac by one pixel.
     // TODO(gspencergoog): Figure out why this is, and fix it. https://github.com/flutter/flutter/issues/12357
     expect(tester.getSize(find.byType(TextButton)).width,
@@ -668,6 +728,13 @@ void main() {
   testWidgets(
       'TextButton size is configurable by ThemeData.materialTapTargetSize',
       (WidgetTester tester) async {
+=======
+    expect(tester.getSize(find.byType(TextButton)), const Size(134.0, 48.0));
+    expect(tester.getSize(find.byType(Text)), const Size(126.0, 42.0));
+  }, skip: kIsWeb && !isCanvasKit); // https://github.com/flutter/flutter/issues/61016
+
+  testWidgets('TextButton size is configurable by ThemeData.materialTapTargetSize', (WidgetTester tester) async {
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
     Widget buildFrame(MaterialTapTargetSize tapTargetSize, Key key) {
       return Theme(
         data: ThemeData(materialTapTargetSize: tapTargetSize),
@@ -807,7 +874,6 @@ void main() {
     final TestGesture gesture =
         await tester.createGesture(kind: PointerDeviceKind.mouse);
     await gesture.addPointer();
-    addTearDown(gesture.removePointer);
     await gesture.moveTo(tester.getCenter(find.byKey(childKey)));
     await tester.pumpAndSettle();
     expect(hovering, isTrue);
@@ -863,7 +929,6 @@ void main() {
     final TestGesture gesture =
         await tester.createGesture(kind: PointerDeviceKind.mouse);
     await gesture.addPointer();
-    addTearDown(gesture.removePointer);
 
     await gesture.moveTo(tester.getCenter(find.byType(TextButton)));
     await tester.pumpAndSettle();
@@ -1128,8 +1193,12 @@ void main() {
                   // default values as the test was designed against these settings.
                   textTheme: Typography.englishLike2014,
                   textButtonTheme: TextButtonThemeData(
+<<<<<<< HEAD
                     style:
                         TextButton.styleFrom(minimumSize: const Size(64, 36)),
+=======
+                    style: TextButton.styleFrom(minimumSize: const Size(64, 36)),
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
                   ),
                 ),
                 home: Builder(
@@ -1315,6 +1384,59 @@ void main() {
     expect(paddingWidget.padding, const EdgeInsets.all(22));
   });
 
+  testWidgets('M3 TextButton has correct default padding', (WidgetTester tester) async {
+    final Key key = UniqueKey();
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: ThemeData.from(colorScheme: const ColorScheme.light(), useMaterial3: true),
+        home:  Scaffold(
+                body: Center(
+                  child: TextButton(
+                    key: key,
+                    onPressed: () {},
+                    child: const Text('TextButton'),
+                  ),
+                ),
+              ),
+            ),
+          );
+
+    final Padding paddingWidget = tester.widget<Padding>(
+      find.descendant(
+        of: find.byKey(key),
+        matching: find.byType(Padding),
+      ),
+    );
+    expect(paddingWidget.padding, const EdgeInsets.symmetric(horizontal: 12,vertical: 8));
+  });
+
+  testWidgets('M3 TextButton.icon has correct default padding', (WidgetTester tester) async {
+    final Key key = UniqueKey();
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: ThemeData.from(colorScheme: const ColorScheme.light(), useMaterial3: true),
+        home: Scaffold(
+                body: Center(
+                  child: TextButton.icon(
+                    key: key,
+                    onPressed: () {},
+                    icon: const Icon(Icons.add),
+                    label: const Text('TextButton'),
+                  ),
+                ),
+              ),
+            ),
+          );
+
+    final Padding paddingWidget = tester.widget<Padding>(
+      find.descendant(
+        of: find.byKey(key),
+        matching: find.byType(Padding),
+      ),
+    );
+   expect(paddingWidget.padding, const EdgeInsetsDirectional.fromSTEB(12, 8, 16, 8));
+  });
+
   testWidgets('Fixed size TextButtons', (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
@@ -1373,10 +1495,15 @@ void main() {
     // NoSplash.splashFactory, no splash circles drawn
     await tester.pumpWidget(buildFrame(splashFactory: NoSplash.splashFactory));
     {
+<<<<<<< HEAD
       final TestGesture gesture =
           await tester.startGesture(tester.getCenter(find.text('test')));
       final MaterialInkController material =
           Material.of(tester.element(find.text('test')))!;
+=======
+      final TestGesture gesture = await tester.startGesture(tester.getCenter(find.text('test')));
+      final MaterialInkController material = Material.of(tester.element(find.text('test')));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
       await tester.pump(const Duration(milliseconds: 200));
       expect(material, paintsExactlyCountTimes(#drawCircle, 0));
       await gesture.up();
@@ -1386,10 +1513,15 @@ void main() {
     // InkRipple.splashFactory, one splash circle drawn.
     await tester.pumpWidget(buildFrame(splashFactory: InkRipple.splashFactory));
     {
+<<<<<<< HEAD
       final TestGesture gesture =
           await tester.startGesture(tester.getCenter(find.text('test')));
       final MaterialInkController material =
           Material.of(tester.element(find.text('test')))!;
+=======
+      final TestGesture gesture = await tester.startGesture(tester.getCenter(find.text('test')));
+      final MaterialInkController material = Material.of(tester.element(find.text('test')));
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
       await tester.pump(const Duration(milliseconds: 200));
       expect(material, paintsExactlyCountTimes(#drawCircle, 1));
       await gesture.up();
@@ -1609,7 +1741,6 @@ void main() {
     final TestGesture gesture =
         await tester.createGesture(kind: PointerDeviceKind.mouse, pointer: 1);
     await gesture.addPointer(location: Offset.zero);
-    addTearDown(gesture.removePointer);
 
     await tester.pump();
 
@@ -1670,6 +1801,223 @@ void main() {
 
     expect(RendererBinding.instance.mouseTracker.debugDeviceActiveCursor(1),
         SystemMouseCursors.basic);
+  });
+
+  testWidgets('TextButton.styleFrom can be used to set foreground and background colors', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.purple,
+            ),
+            onPressed: () {},
+            child: const Text('button'),
+          ),
+        ),
+      ),
+    );
+
+    final Material material = tester.widget<Material>(find.descendant(
+      of: find.byType(TextButton),
+      matching: find.byType(Material),
+    ));
+    expect(material.color, Colors.purple);
+    expect(material.textStyle!.color, Colors.white);
+  });
+
+  Future<void> testStatesController(Widget? icon, WidgetTester tester) async {
+    int count = 0;
+    void valueChanged() {
+      count += 1;
+    }
+    final MaterialStatesController controller = MaterialStatesController();
+    controller.addListener(valueChanged);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+          child: icon == null
+            ? TextButton(
+                statesController: controller,
+                onPressed: () { },
+                child: const Text('button'),
+              )
+            : TextButton.icon(
+                statesController: controller,
+                onPressed: () { },
+                icon: icon,
+                label: const Text('button'),
+              ),
+        ),
+      ),
+    );
+
+    expect(controller.value, <MaterialState>{});
+    expect(count, 0);
+
+    final Offset center = tester.getCenter(find.byType(Text));
+    final TestGesture gesture = await tester.createGesture(
+      kind: PointerDeviceKind.mouse,
+    );
+    await gesture.addPointer();
+    await gesture.moveTo(center);
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{MaterialState.hovered});
+    expect(count, 1);
+
+    await gesture.moveTo(Offset.zero);
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{});
+    expect(count, 2);
+
+    await gesture.moveTo(center);
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{MaterialState.hovered});
+    expect(count, 3);
+
+    await gesture.down(center);
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{MaterialState.hovered, MaterialState.pressed});
+    expect(count, 4);
+
+    await gesture.up();
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{MaterialState.hovered});
+    expect(count, 5);
+
+    await gesture.moveTo(Offset.zero);
+    await tester.pumpAndSettle();
+
+    expect(controller.value, <MaterialState>{});
+    expect(count, 6);
+
+    await gesture.down(center);
+    await tester.pumpAndSettle();
+    expect(controller.value, <MaterialState>{MaterialState.hovered, MaterialState.pressed});
+    expect(count, 8); // adds hovered and pressed - two changes
+
+    // If the button is rebuilt disabled, then the pressed state is
+    // removed.
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+        child: icon == null
+          ? TextButton(
+              statesController: controller,
+              onPressed: null,
+              child: const Text('button'),
+            )
+          : TextButton.icon(
+              statesController: controller,
+              onPressed: null,
+              icon: icon,
+              label: const Text('button'),
+            ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(controller.value, <MaterialState>{MaterialState.hovered, MaterialState.disabled});
+    expect(count, 10); // removes pressed and adds disabled - two changes
+    await gesture.moveTo(Offset.zero);
+    await tester.pumpAndSettle();
+    expect(controller.value, <MaterialState>{MaterialState.disabled});
+    expect(count, 11);
+    await gesture.removePointer();
+  }
+
+  testWidgets('TextButton statesController', (WidgetTester tester) async {
+    testStatesController(null, tester);
+  });
+
+  testWidgets('TextButton.icon statesController', (WidgetTester tester) async {
+    testStatesController(const Icon(Icons.add), tester);
+  });
+
+  testWidgets('Disabled TextButton statesController', (WidgetTester tester) async {
+    int count = 0;
+    void valueChanged() {
+      count += 1;
+    }
+    final MaterialStatesController controller = MaterialStatesController();
+    controller.addListener(valueChanged);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Center(
+          child: TextButton(
+            statesController: controller,
+            onPressed: null,
+            child: const Text('button'),
+          ),
+        ),
+      ),
+    );
+    expect(controller.value, <MaterialState>{MaterialState.disabled});
+    expect(count, 1);
+  });
+
+  testWidgets('icon color can be different from the text color', (WidgetTester tester) async {
+    final Key iconButtonKey = UniqueKey();
+    const ColorScheme colorScheme = ColorScheme.light();
+    final ThemeData theme = ThemeData.from(colorScheme: colorScheme);
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: theme,
+        home: Center(
+          child: TextButton.icon(
+            key: iconButtonKey,
+            style: TextButton.styleFrom(iconColor: Colors.red),
+            icon: const Icon(Icons.add),
+            onPressed: () {},
+            label: const Text('button'),
+          ),
+        ),
+      ),
+    );
+
+    Finder buttonMaterial = find.descendant(
+      of: find.byKey(iconButtonKey),
+      matching: find.byType(Material),
+    );
+
+    Material material = tester.widget<Material>(buttonMaterial);
+    expect(material.textStyle!.color, colorScheme.primary);
+
+    Color? iconColor() => _iconStyle(tester, Icons.add)?.color;
+    expect(iconColor(), equals(Colors.red));
+
+    // disabled button
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: theme,
+        home: Center(
+          child: TextButton.icon(
+            key: iconButtonKey,
+            style: TextButton.styleFrom(iconColor: Colors.red, disabledIconColor: Colors.blue),
+            icon: const Icon(Icons.add),
+            onPressed: null,
+            label: const Text('button'),
+          ),
+        ),
+      ),
+    );
+
+    buttonMaterial = find.descendant(
+      of: find.byKey(iconButtonKey),
+      matching: find.byType(Material),
+    );
+
+    material = tester.widget<Material>(buttonMaterial);
+    expect(material.textStyle!.color, colorScheme.onSurface.withOpacity(0.38));
+    expect(iconColor(), equals(Colors.blue));
   });
 }
 

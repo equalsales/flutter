@@ -4,7 +4,6 @@
 
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
@@ -19,8 +18,10 @@ import 'theme_data.dart';
 /// A utility class for building Material buttons that depend on the
 /// ambient [ButtonTheme] and [Theme].
 ///
-/// ### This class is obsolete.
+/// This class is planned to be deprecated in a future release.
+/// Please use one or more of these buttons and associated themes instead:
 ///
+<<<<<<< HEAD
 /// ElevatedButton and ElevatedButton have been replaced by
 /// TextButton and ElevatedButton respectively.
 /// ButtonTheme has been replaced by TextButtonTheme and
@@ -32,16 +33,24 @@ import 'theme_data.dart';
 /// There's a detailed migration guide for the new button and button
 /// theme classes in
 /// [flutter.dev/go/material-button-migration-guide](https://flutter.dev/go/material-button-migration-guide).
+=======
+///  * [TextButton], [TextButtonTheme], [TextButtonThemeData],
+///  * [ElevatedButton], [ElevatedButtonTheme], [ElevatedButtonThemeData],
+///  * [OutlinedButton], [OutlinedButtonTheme], [OutlinedButtonThemeData]
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 ///
 /// The button's size will expand to fit the child widget, if necessary.
 ///
 /// MaterialButtons whose [onPressed] and [onLongPress] callbacks are null will be disabled. To have
 /// an enabled button, make sure to pass a non-null value for [onPressed] or [onLongPress].
 ///
+<<<<<<< HEAD
 /// Rather than using this class directly, consider using [ElevatedButton]
 /// or [ElevatedButton], which configure this class with
 /// appropriate defaults that match the material design specification.
 ///
+=======
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 /// To create a button directly, without inheriting theme defaults, use
 /// [RawMaterialButton].
 ///
@@ -52,18 +61,23 @@ import 'theme_data.dart';
 ///
 ///  * [IconButton], to create buttons that contain icons rather than text.
 class MaterialButton extends StatelessWidget {
-  /// Creates a material button.
+  /// Creates a Material Design button.
   ///
+<<<<<<< HEAD
   /// Rather than creating a material button directly, consider using
   /// [ElevatedButton] or [ElevatedButton]. To create a custom Material button
   /// consider using [RawMaterialButton].
+=======
+  /// To create a custom Material button consider using [TextButton],
+  /// [ElevatedButton], or [OutlinedButton].
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
   ///
   /// The [autofocus] and [clipBehavior] arguments must not be null.
   /// Additionally,  [elevation], [hoverElevation], [focusElevation],
   /// [highlightElevation], and [disabledElevation] must be non-negative, if
   /// specified.
   const MaterialButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     this.onLongPress,
     this.onHighlightChanged,
@@ -95,6 +109,7 @@ class MaterialButton extends StatelessWidget {
     this.height,
     this.enableFeedback = true,
     this.child,
+<<<<<<< HEAD
   })  : assert(clipBehavior != null),
         assert(autofocus != null),
         assert(elevation == null || elevation >= 0.0),
@@ -103,6 +118,13 @@ class MaterialButton extends StatelessWidget {
         assert(highlightElevation == null || highlightElevation >= 0.0),
         assert(disabledElevation == null || disabledElevation >= 0.0),
         super(key: key);
+=======
+  }) : assert(elevation == null || elevation >= 0.0),
+       assert(focusElevation == null || focusElevation >= 0.0),
+       assert(hoverElevation == null || hoverElevation >= 0.0),
+       assert(highlightElevation == null || highlightElevation >= 0.0),
+       assert(disabledElevation == null || disabledElevation >= 0.0);
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 
   /// The callback that is called when the button is tapped or otherwise activated.
   ///
@@ -144,7 +166,7 @@ class MaterialButton extends StatelessWidget {
   /// The color to use for this button's text.
   ///
   /// The button's [Material.textStyle] will be the current theme's button text
-  /// style, [TextTheme.button] of [ThemeData.textTheme], configured with this
+  /// style, [TextTheme.labelLarge] of [ThemeData.textTheme], configured with this
   /// color.
   ///
   /// The default text color depends on the button theme's text theme,
@@ -162,7 +184,7 @@ class MaterialButton extends StatelessWidget {
   /// The color to use for this button's text when the button is disabled.
   ///
   /// The button's [Material.textStyle] will be the current theme's button text
-  /// style, [TextTheme.button] of [ThemeData.textTheme], configured with this
+  /// style, [TextTheme.labelLarge] of [ThemeData.textTheme], configured with this
   /// color.
   ///
   /// The default value is the theme's disabled color,
@@ -240,7 +262,11 @@ class MaterialButton extends StatelessWidget {
   ///
   /// See also:
   ///
+<<<<<<< HEAD
   ///  * [ElevatedButton], a button with no elevation or fill color.
+=======
+  ///  * [TextButton], a button with no elevation or fill color.
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
   ///  * [focusElevation], the elevation when the button is focused.
   ///  * [hoverElevation], the elevation when a pointer is hovering over the
   ///    button.
@@ -409,8 +435,12 @@ class MaterialButton extends StatelessWidget {
       onHighlightChanged: onHighlightChanged,
       mouseCursor: mouseCursor,
       fillColor: buttonTheme.getFillColor(this),
+<<<<<<< HEAD
       textStyle: theme.textTheme.button!
           .copyWith(color: buttonTheme.getTextColor(this)),
+=======
+      textStyle: theme.textTheme.labelLarge!.copyWith(color: buttonTheme.getTextColor(this)),
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
       focusColor: focusColor ?? buttonTheme.getFocusColor(this),
       hoverColor: hoverColor ?? buttonTheme.getHoverColor(this),
       highlightColor: highlightColor ?? theme.highlightColor,
@@ -474,8 +504,14 @@ class MaterialButton extends StatelessWidget {
   }
 }
 
+<<<<<<< HEAD
 /// The type of [MaterialButton]s created with ElevatedButton.icon] and
 /// ElevatedButton.icon.
+=======
+/// The distinguished type of [MaterialButton].
+///
+/// This class is deprecated and will be removed in a future release.
+>>>>>>> f468f3366c26a5092eb964a230ce7892fda8f2f8
 ///
 /// This mixin only exists to give the "label and icon" button widgets a distinct
 /// type for the sake of [ButtonTheme].
