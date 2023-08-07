@@ -16,7 +16,7 @@ import 'theme_data.dart';
 ///
 /// ### This class is deprecated, please use [ElevatedButton] instead.
 ///
-/// FlatButton and RaisedButton have been replaced by
+/// ElevatedButton and ElevatedButton have been replaced by
 /// [TextButton] and [ElevatedButton] respectively.
 /// ButtonTheme has been replaced by [TextButtonTheme] and
 /// [ElevatedButtonTheme]. The original classes
@@ -28,7 +28,7 @@ import 'theme_data.dart';
   'Use ElevatedButton instead. See the migration guide in flutter.dev/go/material-button-migration-guide). '
   'This feature was deprecated after v1.26.0-18.0.pre.',
 )
-class RaisedButton extends MaterialButton {
+class ElevatedButton extends MaterialButton {
   /// Create a filled button.
   ///
   /// The [autofocus] and [clipBehavior] arguments must not be null.
@@ -39,7 +39,7 @@ class RaisedButton extends MaterialButton {
     'Use ElevatedButton instead. See the migration guide in flutter.dev/go/material-button-migration-guide). '
     'This feature was deprecated after v1.26.0-18.0.pre.',
   )
-  const RaisedButton({
+  const ElevatedButton({
     Key? key,
     required VoidCallback? onPressed,
     VoidCallback? onLongPress,
@@ -69,44 +69,44 @@ class RaisedButton extends MaterialButton {
     MaterialTapTargetSize? materialTapTargetSize,
     Duration? animationDuration,
     Widget? child,
-  }) : assert(autofocus != null),
-       assert(elevation == null || elevation >= 0.0),
-       assert(focusElevation == null || focusElevation >= 0.0),
-       assert(hoverElevation == null || hoverElevation >= 0.0),
-       assert(highlightElevation == null || highlightElevation >= 0.0),
-       assert(disabledElevation == null || disabledElevation >= 0.0),
-       assert(clipBehavior != null),
-       super(
-         key: key,
-         onPressed: onPressed,
-         onLongPress: onLongPress,
-         onHighlightChanged: onHighlightChanged,
-         mouseCursor: mouseCursor,
-         textTheme: textTheme,
-         textColor: textColor,
-         disabledTextColor: disabledTextColor,
-         color: color,
-         disabledColor: disabledColor,
-         focusColor: focusColor,
-         hoverColor: hoverColor,
-         highlightColor: highlightColor,
-         splashColor: splashColor,
-         colorBrightness: colorBrightness,
-         elevation: elevation,
-         focusElevation: focusElevation,
-         hoverElevation: hoverElevation,
-         highlightElevation: highlightElevation,
-         disabledElevation: disabledElevation,
-         padding: padding,
-         visualDensity: visualDensity,
-         shape: shape,
-         clipBehavior: clipBehavior,
-         focusNode: focusNode,
-         autofocus: autofocus,
-         materialTapTargetSize: materialTapTargetSize,
-         animationDuration: animationDuration,
-         child: child,
-       );
+  })  : assert(autofocus != null),
+        assert(elevation == null || elevation >= 0.0),
+        assert(focusElevation == null || focusElevation >= 0.0),
+        assert(hoverElevation == null || hoverElevation >= 0.0),
+        assert(highlightElevation == null || highlightElevation >= 0.0),
+        assert(disabledElevation == null || disabledElevation >= 0.0),
+        assert(clipBehavior != null),
+        super(
+          key: key,
+          onPressed: onPressed,
+          onLongPress: onLongPress,
+          onHighlightChanged: onHighlightChanged,
+          mouseCursor: mouseCursor,
+          textTheme: textTheme,
+          textColor: textColor,
+          disabledTextColor: disabledTextColor,
+          color: color,
+          disabledColor: disabledColor,
+          focusColor: focusColor,
+          hoverColor: hoverColor,
+          highlightColor: highlightColor,
+          splashColor: splashColor,
+          colorBrightness: colorBrightness,
+          elevation: elevation,
+          focusElevation: focusElevation,
+          hoverElevation: hoverElevation,
+          highlightElevation: highlightElevation,
+          disabledElevation: disabledElevation,
+          padding: padding,
+          visualDensity: visualDensity,
+          shape: shape,
+          clipBehavior: clipBehavior,
+          focusNode: focusNode,
+          autofocus: autofocus,
+          materialTapTargetSize: materialTapTargetSize,
+          animationDuration: animationDuration,
+          child: child,
+        );
 
   /// Create a filled button from a pair of widgets that serve as the button's
   /// [icon] and [label].
@@ -120,7 +120,7 @@ class RaisedButton extends MaterialButton {
     'Use ElevatedButton instead. See the migration guide in flutter.dev/go/material-button-migration-guide). '
     'This feature was deprecated after v1.26.0-18.0.pre.',
   )
-  factory RaisedButton.icon({
+  factory ElevatedButton.icon({
     Key? key,
     required VoidCallback? onPressed,
     VoidCallback? onLongPress,
@@ -148,7 +148,7 @@ class RaisedButton extends MaterialButton {
     Duration? animationDuration,
     required Widget icon,
     required Widget label,
-  }) = _RaisedButtonWithIcon;
+  }) = _ElevatedButtonWithIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +161,8 @@ class RaisedButton extends MaterialButton {
       mouseCursor: mouseCursor,
       clipBehavior: clipBehavior,
       fillColor: buttonTheme.getFillColor(this),
-      textStyle: theme.textTheme.button!.copyWith(color: buttonTheme.getTextColor(this)),
+      textStyle: theme.textTheme.button!
+          .copyWith(color: buttonTheme.getTextColor(this)),
       focusColor: buttonTheme.getFocusColor(this),
       hoverColor: buttonTheme.getHoverColor(this),
       highlightColor: buttonTheme.getHighlightColor(this),
@@ -186,20 +187,28 @@ class RaisedButton extends MaterialButton {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<double>('elevation', elevation, defaultValue: null));
-    properties.add(DiagnosticsProperty<double>('focusElevation', focusElevation, defaultValue: null));
-    properties.add(DiagnosticsProperty<double>('hoverElevation', hoverElevation, defaultValue: null));
-    properties.add(DiagnosticsProperty<double>('highlightElevation', highlightElevation, defaultValue: null));
-    properties.add(DiagnosticsProperty<double>('disabledElevation', disabledElevation, defaultValue: null));
+    properties.add(DiagnosticsProperty<double>('elevation', elevation,
+        defaultValue: null));
+    properties.add(DiagnosticsProperty<double>('focusElevation', focusElevation,
+        defaultValue: null));
+    properties.add(DiagnosticsProperty<double>('hoverElevation', hoverElevation,
+        defaultValue: null));
+    properties.add(DiagnosticsProperty<double>(
+        'highlightElevation', highlightElevation,
+        defaultValue: null));
+    properties.add(DiagnosticsProperty<double>(
+        'disabledElevation', disabledElevation,
+        defaultValue: null));
   }
 }
 
-/// The type of RaisedButtons created with [RaisedButton.icon].
+/// The type of ElevatedButtons created with [ElevatedButton.icon].
 ///
-/// This class only exists to give RaisedButtons created with [RaisedButton.icon]
+/// This class only exists to give ElevatedButtons created with [ElevatedButton.icon]
 /// a distinct class for the sake of [ButtonTheme]. It can not be instantiated.
-class _RaisedButtonWithIcon extends RaisedButton with MaterialButtonWithIconMixin {
-  _RaisedButtonWithIcon({
+class _ElevatedButtonWithIcon extends ElevatedButton
+    with MaterialButtonWithIconMixin {
+  _ElevatedButtonWithIcon({
     Key? key,
     required VoidCallback? onPressed,
     VoidCallback? onLongPress,
@@ -227,46 +236,46 @@ class _RaisedButtonWithIcon extends RaisedButton with MaterialButtonWithIconMixi
     Duration? animationDuration,
     required Widget icon,
     required Widget label,
-  }) : assert(elevation == null || elevation >= 0.0),
-       assert(highlightElevation == null || highlightElevation >= 0.0),
-       assert(disabledElevation == null || disabledElevation >= 0.0),
-       assert(clipBehavior != null),
-       assert(icon != null),
-       assert(label != null),
-       assert(autofocus != null),
-       super(
-         key: key,
-         onPressed: onPressed,
-         onLongPress: onLongPress,
-         onHighlightChanged: onHighlightChanged,
-         mouseCursor: mouseCursor,
-         textTheme: textTheme,
-         textColor: textColor,
-         disabledTextColor: disabledTextColor,
-         color: color,
-         disabledColor: disabledColor,
-         focusColor: focusColor,
-         hoverColor: hoverColor,
-         highlightColor: highlightColor,
-         splashColor: splashColor,
-         colorBrightness: colorBrightness,
-         elevation: elevation,
-         highlightElevation: highlightElevation,
-         disabledElevation: disabledElevation,
-         shape: shape,
-         clipBehavior: clipBehavior,
-         focusNode: focusNode,
-         autofocus: autofocus,
-         padding: padding,
-         materialTapTargetSize: materialTapTargetSize,
-         animationDuration: animationDuration,
-         child: Row(
-           mainAxisSize: MainAxisSize.min,
-           children: <Widget>[
-             icon,
-             const SizedBox(width: 8.0),
-             label,
-           ],
-         ),
-       );
+  })  : assert(elevation == null || elevation >= 0.0),
+        assert(highlightElevation == null || highlightElevation >= 0.0),
+        assert(disabledElevation == null || disabledElevation >= 0.0),
+        assert(clipBehavior != null),
+        assert(icon != null),
+        assert(label != null),
+        assert(autofocus != null),
+        super(
+          key: key,
+          onPressed: onPressed,
+          onLongPress: onLongPress,
+          onHighlightChanged: onHighlightChanged,
+          mouseCursor: mouseCursor,
+          textTheme: textTheme,
+          textColor: textColor,
+          disabledTextColor: disabledTextColor,
+          color: color,
+          disabledColor: disabledColor,
+          focusColor: focusColor,
+          hoverColor: hoverColor,
+          highlightColor: highlightColor,
+          splashColor: splashColor,
+          colorBrightness: colorBrightness,
+          elevation: elevation,
+          highlightElevation: highlightElevation,
+          disabledElevation: disabledElevation,
+          shape: shape,
+          clipBehavior: clipBehavior,
+          focusNode: focusNode,
+          autofocus: autofocus,
+          padding: padding,
+          materialTapTargetSize: materialTapTargetSize,
+          animationDuration: animationDuration,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              icon,
+              const SizedBox(width: 8.0),
+              label,
+            ],
+          ),
+        );
 }

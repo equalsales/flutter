@@ -21,7 +21,7 @@ import 'theme_data.dart';
 ///
 /// ### This class is obsolete.
 ///
-/// FlatButton and RaisedButton have been replaced by
+/// ElevatedButton and ElevatedButton have been replaced by
 /// TextButton and ElevatedButton respectively.
 /// ButtonTheme has been replaced by TextButtonTheme and
 /// ElevatedButtonTheme. The appearance of the
@@ -38,8 +38,8 @@ import 'theme_data.dart';
 /// MaterialButtons whose [onPressed] and [onLongPress] callbacks are null will be disabled. To have
 /// an enabled button, make sure to pass a non-null value for [onPressed] or [onLongPress].
 ///
-/// Rather than using this class directly, consider using [FlatButton]
-/// or [RaisedButton], which configure this class with
+/// Rather than using this class directly, consider using [ElevatedButton]
+/// or [ElevatedButton], which configure this class with
 /// appropriate defaults that match the material design specification.
 ///
 /// To create a button directly, without inheriting theme defaults, use
@@ -55,7 +55,7 @@ class MaterialButton extends StatelessWidget {
   /// Creates a material button.
   ///
   /// Rather than creating a material button directly, consider using
-  /// [FlatButton] or [RaisedButton]. To create a custom Material button
+  /// [ElevatedButton] or [ElevatedButton]. To create a custom Material button
   /// consider using [RawMaterialButton].
   ///
   /// The [autofocus] and [clipBehavior] arguments must not be null.
@@ -95,14 +95,14 @@ class MaterialButton extends StatelessWidget {
     this.height,
     this.enableFeedback = true,
     this.child,
-  }) : assert(clipBehavior != null),
-       assert(autofocus != null),
-       assert(elevation == null || elevation >= 0.0),
-       assert(focusElevation == null || focusElevation >= 0.0),
-       assert(hoverElevation == null || hoverElevation >= 0.0),
-       assert(highlightElevation == null || highlightElevation >= 0.0),
-       assert(disabledElevation == null || disabledElevation >= 0.0),
-       super(key: key);
+  })  : assert(clipBehavior != null),
+        assert(autofocus != null),
+        assert(elevation == null || elevation >= 0.0),
+        assert(focusElevation == null || focusElevation >= 0.0),
+        assert(hoverElevation == null || hoverElevation >= 0.0),
+        assert(highlightElevation == null || highlightElevation >= 0.0),
+        assert(disabledElevation == null || disabledElevation >= 0.0),
+        super(key: key);
 
   /// The callback that is called when the button is tapped or otherwise activated.
   ///
@@ -240,7 +240,7 @@ class MaterialButton extends StatelessWidget {
   ///
   /// See also:
   ///
-  ///  * [FlatButton], a button with no elevation or fill color.
+  ///  * [ElevatedButton], a button with no elevation or fill color.
   ///  * [focusElevation], the elevation when the button is focused.
   ///  * [hoverElevation], the elevation when a pointer is hovering over the
   ///    button.
@@ -409,7 +409,8 @@ class MaterialButton extends StatelessWidget {
       onHighlightChanged: onHighlightChanged,
       mouseCursor: mouseCursor,
       fillColor: buttonTheme.getFillColor(this),
-      textStyle: theme.textTheme.button!.copyWith(color: buttonTheme.getTextColor(this)),
+      textStyle: theme.textTheme.button!
+          .copyWith(color: buttonTheme.getTextColor(this)),
       focusColor: focusColor ?? buttonTheme.getFocusColor(this),
       hoverColor: hoverColor ?? buttonTheme.getHoverColor(this),
       highlightColor: highlightColor ?? theme.highlightColor,
@@ -421,15 +422,16 @@ class MaterialButton extends StatelessWidget {
       padding: buttonTheme.getPadding(this),
       visualDensity: visualDensity ?? theme.visualDensity,
       constraints: buttonTheme.getConstraints(this).copyWith(
-        minWidth: minWidth,
-        minHeight: height,
-      ),
+            minWidth: minWidth,
+            minHeight: height,
+          ),
       shape: buttonTheme.getShape(this),
       clipBehavior: clipBehavior,
       focusNode: focusNode,
       autofocus: autofocus,
       animationDuration: buttonTheme.getAnimationDuration(this),
-      materialTapTargetSize: materialTapTargetSize ?? theme.materialTapTargetSize,
+      materialTapTargetSize:
+          materialTapTargetSize ?? theme.materialTapTargetSize,
       disabledElevation: disabledElevation ?? 0.0,
       child: child,
     );
@@ -438,34 +440,49 @@ class MaterialButton extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(FlagProperty('enabled', value: enabled, ifFalse: 'disabled'));
-    properties.add(DiagnosticsProperty<ButtonTextTheme>('textTheme', textTheme, defaultValue: null));
+    properties
+        .add(FlagProperty('enabled', value: enabled, ifFalse: 'disabled'));
+    properties.add(DiagnosticsProperty<ButtonTextTheme>('textTheme', textTheme,
+        defaultValue: null));
     properties.add(ColorProperty('textColor', textColor, defaultValue: null));
-    properties.add(ColorProperty('disabledTextColor', disabledTextColor, defaultValue: null));
+    properties.add(ColorProperty('disabledTextColor', disabledTextColor,
+        defaultValue: null));
     properties.add(ColorProperty('color', color, defaultValue: null));
-    properties.add(ColorProperty('disabledColor', disabledColor, defaultValue: null));
+    properties
+        .add(ColorProperty('disabledColor', disabledColor, defaultValue: null));
     properties.add(ColorProperty('focusColor', focusColor, defaultValue: null));
     properties.add(ColorProperty('hoverColor', hoverColor, defaultValue: null));
-    properties.add(ColorProperty('highlightColor', highlightColor, defaultValue: null));
-    properties.add(ColorProperty('splashColor', splashColor, defaultValue: null));
-    properties.add(DiagnosticsProperty<Brightness>('colorBrightness', colorBrightness, defaultValue: null));
-    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>('padding', padding, defaultValue: null));
-    properties.add(DiagnosticsProperty<VisualDensity>('visualDensity', visualDensity, defaultValue: null));
-    properties.add(DiagnosticsProperty<ShapeBorder>('shape', shape, defaultValue: null));
-    properties.add(DiagnosticsProperty<FocusNode>('focusNode', focusNode, defaultValue: null));
-    properties.add(DiagnosticsProperty<MaterialTapTargetSize>('materialTapTargetSize', materialTapTargetSize, defaultValue: null));
+    properties.add(
+        ColorProperty('highlightColor', highlightColor, defaultValue: null));
+    properties
+        .add(ColorProperty('splashColor', splashColor, defaultValue: null));
+    properties.add(DiagnosticsProperty<Brightness>(
+        'colorBrightness', colorBrightness,
+        defaultValue: null));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>('padding', padding,
+        defaultValue: null));
+    properties.add(DiagnosticsProperty<VisualDensity>(
+        'visualDensity', visualDensity,
+        defaultValue: null));
+    properties.add(
+        DiagnosticsProperty<ShapeBorder>('shape', shape, defaultValue: null));
+    properties.add(DiagnosticsProperty<FocusNode>('focusNode', focusNode,
+        defaultValue: null));
+    properties.add(DiagnosticsProperty<MaterialTapTargetSize>(
+        'materialTapTargetSize', materialTapTargetSize,
+        defaultValue: null));
   }
 }
 
-/// The type of [MaterialButton]s created with RaisedButton.icon] and
-/// FlatButton.icon.
+/// The type of [MaterialButton]s created with ElevatedButton.icon] and
+/// ElevatedButton.icon.
 ///
 /// This mixin only exists to give the "label and icon" button widgets a distinct
 /// type for the sake of [ButtonTheme].
 @Deprecated(
-  'This was used to differentiate types of FlatButton, RaisedButton, and OutlineButton in ButtonTheme. '
+  'This was used to differentiate types of ElevatedButton, ElevatedButton, and OutlineButton in ButtonTheme. '
   'These buttons have been replaced with TextButton, ElevatedButton, and OutlinedButton, each of which have their own respective themes now. '
   'Use one of these button classes instead. '
   'This feature was deprecated after v2.11.0-0.0.pre.',
 )
-mixin MaterialButtonWithIconMixin { }
+mixin MaterialButtonWithIconMixin {}

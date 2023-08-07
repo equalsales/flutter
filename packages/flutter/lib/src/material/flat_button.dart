@@ -14,7 +14,7 @@ import 'theme_data.dart';
 ///
 /// ### This class is deprecated, please use [TextButton] instead.
 ///
-/// FlatButton and RaisedButton have been replaced by
+/// ElevatedButton and ElevatedButton have been replaced by
 /// [TextButton] and [ElevatedButton] respectively.
 /// ButtonTheme has been replaced by [TextButtonTheme] and
 /// [ElevatedButtonTheme]. The original classes
@@ -26,7 +26,7 @@ import 'theme_data.dart';
   'Use TextButton instead. See the migration guide in flutter.dev/go/material-button-migration-guide). '
   'This feature was deprecated after v1.26.0-18.0.pre.',
 )
-class FlatButton extends MaterialButton {
+class ElevatedButton extends MaterialButton {
   /// Create a simple text button.
   ///
   /// The [autofocus] and [clipBehavior] arguments must not be null.
@@ -34,7 +34,7 @@ class FlatButton extends MaterialButton {
     'Use TextButton instead. See the migration guide in flutter.dev/go/material-button-migration-guide). '
     'This feature was deprecated after v1.26.0-18.0.pre.',
   )
-  const FlatButton({
+  const ElevatedButton({
     Key? key,
     required VoidCallback? onPressed,
     VoidCallback? onLongPress,
@@ -60,35 +60,35 @@ class FlatButton extends MaterialButton {
     required Widget child,
     double? height,
     double? minWidth,
-  }) : assert(clipBehavior != null),
-       assert(autofocus != null),
-       super(
-         key: key,
-         height: height,
-         minWidth: minWidth,
-         onPressed: onPressed,
-         onLongPress: onLongPress,
-         onHighlightChanged: onHighlightChanged,
-         mouseCursor: mouseCursor,
-         textTheme: textTheme,
-         textColor: textColor,
-         disabledTextColor: disabledTextColor,
-         color: color,
-         disabledColor: disabledColor,
-         focusColor: focusColor,
-         hoverColor: hoverColor,
-         highlightColor: highlightColor,
-         splashColor: splashColor,
-         colorBrightness: colorBrightness,
-         padding: padding,
-         visualDensity: visualDensity,
-         shape: shape,
-         clipBehavior: clipBehavior,
-         focusNode: focusNode,
-         autofocus: autofocus,
-         materialTapTargetSize: materialTapTargetSize,
-         child: child,
-      );
+  })  : assert(clipBehavior != null),
+        assert(autofocus != null),
+        super(
+          key: key,
+          height: height,
+          minWidth: minWidth,
+          onPressed: onPressed,
+          onLongPress: onLongPress,
+          onHighlightChanged: onHighlightChanged,
+          mouseCursor: mouseCursor,
+          textTheme: textTheme,
+          textColor: textColor,
+          disabledTextColor: disabledTextColor,
+          color: color,
+          disabledColor: disabledColor,
+          focusColor: focusColor,
+          hoverColor: hoverColor,
+          highlightColor: highlightColor,
+          splashColor: splashColor,
+          colorBrightness: colorBrightness,
+          padding: padding,
+          visualDensity: visualDensity,
+          shape: shape,
+          clipBehavior: clipBehavior,
+          focusNode: focusNode,
+          autofocus: autofocus,
+          materialTapTargetSize: materialTapTargetSize,
+          child: child,
+        );
 
   /// Create a text button from a pair of widgets that serve as the button's
   /// [icon] and [label].
@@ -101,7 +101,7 @@ class FlatButton extends MaterialButton {
     'Use TextButton instead. See the migration guide in flutter.dev/go/material-button-migration-guide). '
     'This feature was deprecated after v1.26.0-18.0.pre.',
   )
-  factory FlatButton.icon({
+  factory ElevatedButton.icon({
     Key? key,
     required VoidCallback? onPressed,
     VoidCallback? onLongPress,
@@ -127,7 +127,7 @@ class FlatButton extends MaterialButton {
     required Widget label,
     double? minWidth,
     double? height,
-  }) = _FlatButtonWithIcon;
+  }) = _ElevatedButtonWithIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +139,8 @@ class FlatButton extends MaterialButton {
       onHighlightChanged: onHighlightChanged,
       mouseCursor: mouseCursor,
       fillColor: buttonTheme.getFillColor(this),
-      textStyle: theme.textTheme.button!.copyWith(color: buttonTheme.getTextColor(this)),
+      textStyle: theme.textTheme.button!
+          .copyWith(color: buttonTheme.getTextColor(this)),
       focusColor: buttonTheme.getFocusColor(this),
       hoverColor: buttonTheme.getHoverColor(this),
       highlightColor: buttonTheme.getHighlightColor(this),
@@ -152,9 +153,9 @@ class FlatButton extends MaterialButton {
       padding: buttonTheme.getPadding(this),
       visualDensity: visualDensity ?? theme.visualDensity,
       constraints: buttonTheme.getConstraints(this).copyWith(
-        minWidth: minWidth,
-        minHeight: height,
-      ),
+            minWidth: minWidth,
+            minHeight: height,
+          ),
       shape: buttonTheme.getShape(this),
       clipBehavior: clipBehavior,
       focusNode: focusNode,
@@ -166,12 +167,13 @@ class FlatButton extends MaterialButton {
   }
 }
 
-/// The type of FlatButtons created with [FlatButton.icon].
+/// The type of ElevatedButtons created with [ElevatedButton.icon].
 ///
-/// This class only exists to give FlatButtons created with [FlatButton.icon]
+/// This class only exists to give ElevatedButtons created with [ElevatedButton.icon]
 /// a distinct class for the sake of [ButtonTheme]. It can not be instantiated.
-class _FlatButtonWithIcon extends FlatButton with MaterialButtonWithIconMixin {
-  _FlatButtonWithIcon({
+class _ElevatedButtonWithIcon extends ElevatedButton
+    with MaterialButtonWithIconMixin {
+  _ElevatedButtonWithIcon({
     Key? key,
     required VoidCallback? onPressed,
     VoidCallback? onLongPress,
@@ -197,42 +199,41 @@ class _FlatButtonWithIcon extends FlatButton with MaterialButtonWithIconMixin {
     required Widget label,
     double? minWidth,
     double? height,
-  }) : assert(icon != null),
-       assert(label != null),
-       assert(clipBehavior != null),
-       assert(autofocus != null),
-       super(
-         key: key,
-         onPressed: onPressed,
-         onLongPress: onLongPress,
-         onHighlightChanged: onHighlightChanged,
-         mouseCursor: mouseCursor,
-         textTheme: textTheme,
-         textColor: textColor,
-         disabledTextColor: disabledTextColor,
-         color: color,
-         disabledColor: disabledColor,
-         focusColor: focusColor,
-         hoverColor: hoverColor,
-         highlightColor: highlightColor,
-         splashColor: splashColor,
-         colorBrightness: colorBrightness,
-         padding: padding,
-         shape: shape,
-         clipBehavior: clipBehavior,
-         focusNode: focusNode,
-         autofocus: autofocus,
-         materialTapTargetSize: materialTapTargetSize,
-         child: Row(
-           mainAxisSize: MainAxisSize.min,
-           children: <Widget>[
-             icon,
-             const SizedBox(width: 8.0),
-             label,
-           ],
-         ),
-         minWidth: minWidth,
-         height: height,
-       );
-
+  })  : assert(icon != null),
+        assert(label != null),
+        assert(clipBehavior != null),
+        assert(autofocus != null),
+        super(
+          key: key,
+          onPressed: onPressed,
+          onLongPress: onLongPress,
+          onHighlightChanged: onHighlightChanged,
+          mouseCursor: mouseCursor,
+          textTheme: textTheme,
+          textColor: textColor,
+          disabledTextColor: disabledTextColor,
+          color: color,
+          disabledColor: disabledColor,
+          focusColor: focusColor,
+          hoverColor: hoverColor,
+          highlightColor: highlightColor,
+          splashColor: splashColor,
+          colorBrightness: colorBrightness,
+          padding: padding,
+          shape: shape,
+          clipBehavior: clipBehavior,
+          focusNode: focusNode,
+          autofocus: autofocus,
+          materialTapTargetSize: materialTapTargetSize,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              icon,
+              const SizedBox(width: 8.0),
+              label,
+            ],
+          ),
+          minWidth: minWidth,
+          height: height,
+        );
 }
